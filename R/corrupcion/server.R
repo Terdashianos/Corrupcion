@@ -1,6 +1,104 @@
 
 server <- function(input, output, session) {
   
+  
+  
+  hc_evangelion <- function(...) {
+    theme <-
+      hc_theme(colors = c("#9474c1", "#46bd4f", "#d94424", "#dddfe7", "#55a2b6", 
+                          "#c71647", "#5e8ea4", "#955cab", "#55a2b6", "#ac3c64",
+                          "#2b44a6", "#c23d64", "#28a690", "#5c526f", "#e0ca77",
+                          "#ee974a", "#386fce", "#265352", "#d43d29", "#4c545b"), ### Importante para modificar todos los colores
+               chart = list(
+                 backgroundColor =  'transparent', #'rgba(255, 255, 166,0.1)'   'transparent'
+                 style = list(
+                   fontFamily = "Inconsolata",
+                   font = '15pt "Inconsolata", Verdana, sans-serif',
+                   color = "#101010" #  "#negro101010" #blancoFFFFFF
+                 )
+               ),
+               title = list(
+                 style = list(
+                   color = "#101010"
+                 ),
+                 align = "left"
+               ),
+               subtitle = list(
+                 style = list(
+                   color = "#101010"
+                 ),
+                 align = "left"
+               ),
+               legend = list(
+                 labels = list(style = list(color = "#101010")),
+                 align = "right",
+                 verticalAlign = "bottom",
+                 itemStyle = list(
+                   fontWeight = "normal",
+                   fontSize =
+                     "15px",
+                   color = "#101010",
+                   tickWidth = 100
+                 )
+               ),
+               yrcy = list(
+                 align = "right",
+                 verticalAlign = "bottom",
+                 itemStyle = list(
+                   fontWeight = "normal",
+                   fontSize = "20px",
+                   color = "#101010"
+                 )
+               )
+               ,
+               xAxis = list(
+                 title = list(style = list(color = "#101010")),
+                 labels = list(style = list(color = "#101010")),
+                 gridLineDashStyle = "Dot",
+                 gridLineWidth = 1,
+                 gridLineColor = "#101010",
+                 lineColor = "#101010",
+                 minorGridLineColor = "#101010",
+                 tickColor = "#101010",
+                 tickWidth = 1),
+               
+               yAxis = list(
+                 title = list(style = list(color = "#101010")),
+                 labels = list(style = list(color = "#101010")),
+                 gridLineDashStyle = "Dot",
+                 gridLineColor = "#101010",
+                 lineColor = "#101010",
+                 minorGridLineColor = "#101010",
+                 tickColor = "#101010",
+                 tickWidth = 1
+               ),
+               caption = list(
+                 style = list(
+                   color = "#101010"
+                 ),
+                 align = "left"
+               ),
+               tooltip = list(
+                 backgroundColor = 'transparent', ### you must be 'transparent'
+                 style = list(
+                   color = "#101010",
+                   fontSize = "15px"
+                 )
+               )
+      )
+    
+    theme <- structure(theme, class = "hc_theme")
+    
+    if (length(list(...)) > 0) {
+      theme <- hc_theme_merge(
+        theme,
+        hc_theme(...)
+      )
+    }
+    
+    theme
+  }
+  
   observeEvent(c(input$picker_dep_i), {
     inahilitados <- inhabilitacion_shiny %>% filter(dependencia==input$picker_dep_i)
     
@@ -38,7 +136,7 @@ server <- function(input, output, session) {
         enabled=TRUE
       )%>%
       hc_add_theme(
-        hc_theme_bloom()
+        hc_evangelion()
       )
   })
   
@@ -52,7 +150,7 @@ server <- function(input, output, session) {
         enabled=TRUE
       )%>%
       hc_add_theme(
-        hc_theme_bloom()
+        hc_evangelion()
       )
   })
   
@@ -72,7 +170,7 @@ server <- function(input, output, session) {
         enabled=TRUE
       )%>%
       hc_add_theme(
-        hc_theme_bloom()
+        hc_evangelion()
       )
     
   })
@@ -93,9 +191,12 @@ server <- function(input, output, session) {
         enabled=TRUE
       )%>%
       hc_add_theme(
-        hc_theme_bloom()
+        hc_evangelion()
       )
   })
+  
+  waiter_hide()
 
 }
+
 

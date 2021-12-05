@@ -1,10 +1,16 @@
 navbarPage(title = "Datatón Anticorrupción 2021", 
            header = tagList(
-             useShinydashboard()
+             useShinydashboard(),
+             useWaiter(), # include dependencies
+             waiterShowOnLoad(spin_ball(),color = "#FFFDD0")
            ),
         
            id = "intro",
-                 
+           setBackgroundColor(
+             color = c("#FFFDD0","#FFFDD0","#FFFDD0","#FFFDD0","white"),
+             gradient = c("linear"),
+             direction = "bottom"
+           ),
                  tabPanel("Introducción",
                           box(title="", status = "primary",width = 12, solidHeader = F,
                             h1("Datatón Anticorrupción 2021", align = "center"),
@@ -22,18 +28,25 @@ navbarPage(title = "Datatón Anticorrupción 2021",
                           h3("-Después se analiza la dispersión entre el ingreso declarado y las multas impuestas por puestos ejercidos"),
                           h3("-Por último se desarrolla un modelo de ML para crear clusters en los datos y observar patrones")
                           ),
-                          
+                          setShadow(class = "dropdown-menu") ,       
+                          setShadow(class = "highchart"),
+                          spsGoTop("up", right = "01%",  bottom= "01%", icon = icon("arrow-up"), color = "green")
                           ),
                  tabPanel("Inhabilitaciones",
                           column(4, 
                             fluidRow(
                               pickerInput("picker_dep_i", "Área de la Dependencia", choices = c(unique(inhabilitacion_shiny$dependencia)),
                                           options = list(`actions-box` = FALSE),multiple = FALSE)
-                              )
+                              ),
+                            column(
+                              pickerInput("picker_caps", "Estilo", choices=caps,
+                                options = list(`actions-box` = TRUE),multiple = FALSE), width=3
+                              ),
                           ),
                           fluidRow(
                             highchartOutput("bar_inhabi", height = "80vh", width = "80vh"), width=10, 
-                          )
+                          ),
+                          spsGoTop("up", right = "01%",  bottom= "01%", icon = icon("arrow-up"), color = "green"),
                           ),
                  tabPanel("Multas",
                           column(4, 
@@ -50,7 +63,8 @@ navbarPage(title = "Datatón Anticorrupción 2021",
                           ),
                           fluidRow(
                             highchartOutput("scatter_multas", height = "80vh", width = "80vh"), width=8, 
-                          )
+                          ),
+                          spsGoTop("up", right = "01%",  bottom= "01%", icon = icon("arrow-up"), color = "green"),
                           ),
                  tabPanel("Clusters Método",
                           HTML('
@@ -99,9 +113,9 @@ navbarPage(title = "Datatón Anticorrupción 2021",
                                   A grandes rasgoz los datos parecen estar ya divididos en dos grupos y a partir de estos
                                   el modelo los fragmenta."),
                             )
-                          )
+                          ),
                           
-                          
+  spsGoTop("up", right = "01%",  bottom= "01%", icon = icon("arrow-up"), color = "green")
                           ),
                  tabPanel("Clusters Resultado",
                           column(4, 
@@ -133,7 +147,8 @@ navbarPage(title = "Datatón Anticorrupción 2021",
                           ),
                           fluidRow(
                             highchartOutput("bar_c_inc", height = "90vh", width = "90vh"), width=10
-                          )
+                          ),
+                          spsGoTop("up", right = "01%",  bottom= "01%", icon = icon("arrow-up"), color = "green")
                  )
 )
 

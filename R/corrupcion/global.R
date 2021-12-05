@@ -20,11 +20,10 @@ library(rworldxtra)
 library(raster) 
 library(paletteer)
 library(rcartocolor)
-
+library(waiter)
+library("spsComps")
 
 inhabilitacion_shiny <- read_excel("www/inhabilitacion_shiny.xlsx")
 multas_shiny <- read_excel("www/multas_shiny.xlsx")
 cluster_fshiny <- read_excel("www/cluster_fshiny.xlsx")
 c_mean_income <- read_excel("www/c_mean_income.xlsx")
-
-
